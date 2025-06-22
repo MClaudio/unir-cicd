@@ -58,8 +58,10 @@ pipeline {
     }
     post {
         always {
-            junit 'results/*.xml'
-            cleanWs()
+            node {
+                junit 'results/*.xml'
+                cleanWs()
+            }
         }
         failure {
             emailext (
