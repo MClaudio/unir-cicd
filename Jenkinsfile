@@ -33,6 +33,7 @@ pipeline {
     }
     post {
         always {
+            sh 'ls -l results || true'
             junit 'results/*.xml'
             cleanWs()
         }
