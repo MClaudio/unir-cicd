@@ -33,9 +33,6 @@ pipeline {
     }
     post {
         always {
-            echo 'Cleaning workspace...'
-            sh 'make clean'
-            archiveArtifacts artifacts: 'results/*.xml'
             junit 'results/*.xml'
             cleanWs()
         }
