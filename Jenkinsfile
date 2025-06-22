@@ -58,7 +58,7 @@ pipeline {
     }
     post {
         always {
-            node('master') {
+            node() {
                 junit 'results/*.xml'
                 cleanWs()
             }
