@@ -27,13 +27,15 @@ pipeline {
         stage('E2E tests') {
             steps {
                 sh 'make test-e2e'
-                archiveArtifacts artifacts: 'results/e2e_result.xml'
+                archiveArtifacts artifacts: 'results/e2e_*.xml'
             }
         }
     }
     post {
         always {
-            sh 'ls -l results || true'
+            echo 'Cleaning workspace...'
+            sh 'make clean'
+            archiveArtifacts artifacts: 'results/*.xml'
             junit 'results/*.xml'
             cleanWs()
         }
