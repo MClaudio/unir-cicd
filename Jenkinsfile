@@ -38,9 +38,11 @@ pipeline {
     }
     post {
         always {
-            node {
-                junit 'results/*.xml'
-                cleanWs()
+            script {
+                node {
+                    junit 'results/*.xml'
+                    cleanWs()
+                }
             }
         }
         failure {
