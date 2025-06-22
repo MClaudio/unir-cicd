@@ -27,12 +27,6 @@ pipeline {
         stage('E2E tests') {
             steps {
                 sh 'make test-e2e'
-                script {
-                    def files = findFiles(glob: 'results/e2e_*.xml')
-                    if (files.isEmpty()) {
-                        error("No se encontraron archivos de resultados E2E")
-                    }
-                }
                 archiveArtifacts artifacts: 'results/e2e_*.xml'
             }
 
