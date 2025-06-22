@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'buildpack-deps:latest'
+        }
+    }
     stages {
         stage('Source') {
             steps {
