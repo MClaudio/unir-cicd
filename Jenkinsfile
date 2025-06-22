@@ -1,22 +1,6 @@
 pipeline {
-    agent {
-        label 'docker'
-    }
+    agent any
     stages {
-        stage('Install Dependencies') {
-            steps {
-                sh '''
-                    if [ -f install-dependencies.sh ]; then
-                        sudo ./install-dependencies.sh
-                    else
-                        echo "Descargando script de instalación..."
-                        wget https://raw.githubusercontent.com/tu-repositorio/install-dependencies.sh/main/install-dependencies.sh
-                        chmod +x install-dependencies.sh
-                        sudo ./install-dependencies.sh
-                    fi
-                '''
-            }
-        }
         stage('Source') {
             steps {
                 git 'https://github.com/MClaudio/unir-cicd.git'
